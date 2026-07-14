@@ -1,5 +1,8 @@
 <?php
 
+use App\Providers\SignalServiceProvider;
+use App\Providers\WPAuthServiceProvider;
+use App\Providers\WPServiceProvider;
 use WPINT\Core\Foundation\ServiceProvider;
 use Wpint\Support\Facade;
 
@@ -8,13 +11,12 @@ return [
     /**
      * Translate domain
      */
-    'translate_domain'    =>  env('APP_TRNAS_DOMAIN', 'wpint_translate'),
+    'translate_domain' => env('APP_TRNAS_DOMAIN', 'wpint_translate'),
 
     /**
      * plugin path
      */
     'plugin_path' => WPINT_PLUGIN_PATH,
-    
 
     /**
      * plugin uri
@@ -146,7 +148,7 @@ return [
 
     'previous_keys' => [
         ...array_filter(
-            explode(',', (string) env('APP_PREVIOUS_KEYS', ''))
+            explode(',', (string) env('APP_PREVIOUS_KEYS', '')),
         ),
     ],
 
@@ -178,17 +180,17 @@ return [
     | arrays below to provide additional features to this application.
     |
     */
-
     'providers' => ServiceProvider::defaultProviders()->merge([
         // Package Service Providers...
     ])->merge([
         // Application Service Providers...
-        App\Providers\WPServiceProvider::class,
-        App\Providers\WPAuthServiceProvider::class,
+        WPServiceProvider::class,
+        WPAuthServiceProvider::class,
+        SignalServiceProvider::class,
         /**
-         * If you want to use Broadcasting, you need the Illuminate\Routing service provider to be added
-         */
-        // \Illuminate\Routing\RoutingServiceProvider::class, 
+     * If you want to use Broadcasting, you need the Illuminate\Routing service provider to be added
+     */
+        // \Illuminate\Routing\RoutingServiceProvider::class,
     ])->merge([
         // Added Service Providers (Do not remove this line)...
     ])->toArray(),
@@ -205,7 +207,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        
+
     ])->toArray(),
 
 ];

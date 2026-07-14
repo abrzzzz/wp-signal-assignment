@@ -1,32 +1,27 @@
-<?php 
+<?php
+
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Exceptions;
 use WPINT\Core\Foundation\ServiceProvider;
 use Wpint\Support\Facades\WPAPI;
 use Wpint\WPAPI\Hook\Enum\HookTypeEnum;
 
 class WPServiceProvider extends ServiceProvider
 {
-
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register() : void
+    public function register(): void
     {
         // Register your service
     }
 
     /**
      * Bootstrap any application service
-     *
-     * @return void
      */
     public function boot(): void
-    {   
-        
+    {
+
         /**
          * enqueue compiled js and css files
          * default scope is ADMIN
@@ -38,7 +33,7 @@ class WPServiceProvider extends ServiceProvider
         // ->register();
 
         /**
-         * e.g: add a custom field to "Settings > Reading" 
+         * e.g: add a custom field to "Settings > Reading"
          * default option group is OPTIONS
          */
         // WPAPI::setting()
@@ -52,11 +47,10 @@ class WPServiceProvider extends ServiceProvider
         // ->fieldtitle('WPINT Setting')
         // ->fieldCallback(function(){
         //     $setting = get_option('wpint_custom_setting');
-        //     $setting = isset( $setting ) ? esc_attr( $setting ) : ''; 
+        //     $setting = isset( $setting ) ? esc_attr( $setting ) : '';
         //     echo '<input type="text" name="wpint_custom_setting" value="'. $setting .'">';
         // })->register();
-        
- 
+
         /**
          * e.g: add a custom shortcode
          */
@@ -70,10 +64,10 @@ class WPServiceProvider extends ServiceProvider
         /**
          * e.g: add a custom post type
          */
-        // WPAPI::postType()
-        // ->id('wpint')
-        // ->public()
-        // ->register();
+        WPAPI::postType()
+            ->id('signals')
+            ->public()
+            ->register();
 
         /**
          * e.g: add a custom taxonomy
@@ -85,7 +79,7 @@ class WPServiceProvider extends ServiceProvider
         // ->hierarchical()
         // ->posttype('wpint')
         // ->register();
-        
+
         /**
          * add a custom cron interval
          */
@@ -104,7 +98,7 @@ class WPServiceProvider extends ServiceProvider
         //     update_option('wpint_cron', $times + 1);
         // })
         // ->register();
-            
+
         /**
          * add a custom metabox
          * default context is ADVANCES | default priority is DEFAULT
@@ -126,7 +120,7 @@ class WPServiceProvider extends ServiceProvider
 
         /**
          * Prevent a custom routes filter
-         * default type is ACTION 
+         * default type is ACTION
          */
         // WPAPI::hook()
         // ->name('wpint_prevent_dispatch')
@@ -134,10 +128,10 @@ class WPServiceProvider extends ServiceProvider
         // ->acceptedArgs(1)
         // ->callback(function($pipes)
         // {
-        //     // prevent route dispatcher            
+        //     // prevent route dispatcher
         //     return $pipes;
         // })
         // ->register();
     }
-
 }
+

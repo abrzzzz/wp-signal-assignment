@@ -48,12 +48,12 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'localhost' ),
+            'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', DB_NAME),
             'username' => env('DB_USERNAME', DB_USER),
             'password' => env('DB_PASSWORD', DB_PASSWORD),
-            'unix_socket' => '/home/abrz/.config/Local/run/JKOnA4yDG/mysql/mysqld.sock',
+            'unix_socket' => '/home/abrz/.config/Local/run/oAENWgBZF/mysql/mysqld.sock',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => $wpdb->prefix,
@@ -127,7 +127,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'wpint'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'wpint'), '_') . '_database_'),
         ],
 
         'default' => [
@@ -151,5 +151,3 @@ return [
     ],
 
 ];
-
-
