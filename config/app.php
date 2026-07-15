@@ -1,5 +1,6 @@
 <?php
 
+use AlgoYounes\CircuitBreaker\Providers\CircuitBreakerServiceProvider;
 use App\Providers\SignalServiceProvider;
 use App\Providers\WPAuthServiceProvider;
 use App\Providers\WPServiceProvider;
@@ -182,6 +183,7 @@ return [
     */
     'providers' => ServiceProvider::defaultProviders()->merge([
         // Package Service Providers...
+        CircuitBreakerServiceProvider::class,
     ])->merge([
         // Application Service Providers...
         WPServiceProvider::class,
