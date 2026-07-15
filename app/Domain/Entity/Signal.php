@@ -8,6 +8,7 @@ class Signal
 {
     public function __construct(
         private ?int $id,
+        private string $baseQuote,
         private float $entryPrice,
         private float $takeProfit,
         private float $stopLoss,
@@ -22,6 +23,11 @@ class Signal
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getBaseQuote(): string
+    {
+        return $this->baseQuote;
     }
 
     public function getEntryPrice(): float
