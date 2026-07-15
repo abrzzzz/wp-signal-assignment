@@ -30,6 +30,7 @@
         "phpunit/phpunit": "^11.5.3"
     },
     "require": {
+        "algoyounes/circuit-breaker": "dev-master",
         "wpint/core": "*"
     },
     "scripts": {

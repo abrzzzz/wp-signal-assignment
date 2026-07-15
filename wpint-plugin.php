@@ -10,6 +10,9 @@
  * Domain Path:     /languages
  * Version:         1.0.1
  */
+use App\Infra\Api\TabdealPriceProvider;
+use App\Infra\Repository\SignalRepository;
+use App\Infra\WP\CronManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -21,14 +24,23 @@ define('WPINT_ADMIN_NONCE', 'tabdeal_admin_nonce');
 add_action('plugins_loaded', function () {
     $app = require_once dirname(__FILE__) . '/bootstrap/app.php';
     $app->handleRequest(Request::capture());
+
+    /* $t = new TabdealPriceProvider(); */
+    /* dd($t->fetch()); */
+    /* $rep = new SignalRepository(); */
+    /* dd($rep->getActives()->first()); */
+
 }, 1);
 
 // Your code starts here.
 function wpint_plugin_activation() {}
+
 register_activation_hook(__FILE__, 'wpint_plugin_activation');
 
 function wpint_plugin_deactivation()
 {
+
+    CronManager::deactivate();
     Artisan::call('optimize:clear');
     flush_rewrite_rules();
 }
