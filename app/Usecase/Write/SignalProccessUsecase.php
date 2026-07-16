@@ -29,7 +29,7 @@ class SignalProccessUsecase
                 }
                 $stateModifier = new SignalStateModifier($signal, app(EventDispatcher::class));
                 $updatedSignal = $stateModifier->transition($newState);
-                $repo->updateStatus($signal->getId(), $newState);
+                $repo->updateStatus($updatedSignal->getId(), $updatedSignal->getState());
             });
         } catch (\Exception $e) {
             error_log('[signal][error]: ' . $e->getMessage());
