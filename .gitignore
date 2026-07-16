@@ -16,3 +16,4 @@ composer-local.json
 resources/scripts/dist/
 .env
 storage/
+/bootstrap/cache/*
