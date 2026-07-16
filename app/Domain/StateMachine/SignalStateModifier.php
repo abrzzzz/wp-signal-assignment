@@ -20,17 +20,18 @@ class SignalStateModifier
 
     public function __construct(private Signal $signal, private EventDispatcher $dispatcher) {}
 
-    public function transition(SignalState $newState): void
+    public function transition(SignalState $newState): Signal
     {
         $currentState = $this->signal->getState();
         $allowed = $this->allowdTransitions[$currentState->name] ?? [];
         if (! in_array($newState, $allowed)) {
-            // TODO Should dispatch and event
             $this->dispatcher->dispatch(new SignalTransitionFailed($this->signal));
             throw new \Exception('Transition from is not possible.');
         }
 
         $this->signal->setState($newState);
         $this->dispatcher->dispatch(new SignalTransitionSucceeded($this->signal));
+
+        return $this->signal;
     }
 }
