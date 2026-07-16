@@ -5,6 +5,7 @@ concepts are tried to be implemented framework agnostic, and only used subtle fe
 
 ## Installation 
 - run `git checkout docker`
+- run `cd Docker`
 - run `docker compose up build --no-cache`
 - run `docker compose up`
 
